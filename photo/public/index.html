@@ -11,7 +11,7 @@
     <div id="chat"></div>
 
     <script>
-        const socket = new WebSocket('wss://<API-Gateway-ID>.execute-api.<region>.amazonaws.com/<stage>');
+        const socket = new WebSocket('wss://qmltso6u8b.execute-api.ap-northeast-1.amazonaws.com/production');
 
         socket.onopen = () => console.log('接続しました');
         socket.onmessage = (event) => {
