@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "node index.html",
-    "build": "echo 'Build step (optional)'"
+    "build": "echo 'No build needed'"
   },
   "keywords": [],
   "author": "",
