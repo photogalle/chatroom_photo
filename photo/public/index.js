@@ -1,5 +1,5 @@
 // WebSocket接続
-const ws = new WebSocket('ws://54.250.86.65:3000');
+const ws = new WebSocket('wss://qmltso6u8b.execute-api.ap-northeast-1.amazonaws.com/production');
 let uuid = null;
 
 // メッセージ受信処理
