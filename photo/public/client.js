@@ -87,7 +87,7 @@ function sendMessage() {
 // ここから下はDOM生成処理（メッセージ受信後のDOM生成）
 function createMessage(json) {
   console.log('受け取ったメッセージを画面描写します');
-  const side = json.side ? 'mine' : 'other';
+  const side = (json.side === 'mine') ? 'mine' : 'other';
   const sideElement = createDiv(side);
   const sideTextElement = createDiv(`${side}-text`);
   const timeElement = createDiv('time');
