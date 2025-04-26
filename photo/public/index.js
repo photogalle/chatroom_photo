@@ -22,6 +22,14 @@ function connectWebSocket() {
 
   socket.onmessage = (event) => {
     try {
+      console.log('履歴情報を取得開始します。');
+
+      if (event.data === 'pong') {
+        if (pingPongTimer) clearTimeout(pingPongTimer);
+        console.log('接続状態をチェックします');
+        return checkConnection();
+      }
+      
       const json = JSON.parse(event.data);
 
       if (!event.data || event.data === '{}' || event.data.trim() === '') {
@@ -31,13 +39,6 @@ function connectWebSocket() {
       if (json.message === 'Internal server error') {
         return; // 無視
       }
-
-      if (event.data === 'pong') {
-        if (pingPongTimer) clearTimeout(pingPongTimer);
-        return checkConnection();
-      }
-
-      console.log('履歴受信開始します')
 
       console.log(json);
       if (json.uuid) {
@@ -112,11 +113,11 @@ function createDiv(className) {
 function checkConnection() {
   setTimeout(() => {
     if (socket && socket.readyState === WebSocket.OPEN) {
-      socket.send('ping');
+      socket.send(JSON.stringify({ action: 'ping' }));
       pingPongTimer = setTimeout(() => {
         console.log('応答なし。再接続します...');
         socket.close(); // onclose が発火して再接続される
-      }, 1000);
+      }, 3000);
     }
   }, 30000);
 }
