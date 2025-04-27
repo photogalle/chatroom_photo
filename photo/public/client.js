@@ -48,6 +48,7 @@ function connectWebSocket() {
         const msgElement = createMessage(json);
         chatDiv.appendChild(msgElement);
         chat.scrollTop = chat.scrollHeight;
+        hideLoading();
         console.log("受信:", event.data);
       }
 
@@ -120,4 +121,11 @@ function checkConnection() {
       }, 3000);
     }
   }, 30000);
+}
+
+function hideLoading() {
+  const loadingDiv = document.getElementById('loading');
+  if (loadingDiv) {
+    loadingDiv.style.display = 'none';
+  }
 }
